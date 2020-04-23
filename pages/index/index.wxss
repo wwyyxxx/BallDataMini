@@ -1,0 +1,148 @@
+/**index.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #1989fa;
+  padding: 10rpx 0;
+  min-height: 160rpx;
+}
+.userinfo-avatar {
+  width: 110rpx;
+  height: 110rpx;
+  margin: 30rpx;
+  border-radius: 50%;
+}
+.userinfo-nickname {
+  color: #fff;
+}
+.userinfo-btn {
+  font-weight: normal;
+  color: #000;
+  font-size: 30rpx;
+  border-radius: 20px;
+  border: 1rpx solid #1989fa;
+  background-color: #fff;
+}
+
+
+.active0 {
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx 20rpx 40rpx;
+  overflow: scroll;
+  height: 86vh;
+}
+.active0-header {
+  display: flex;
+  flex-direction: row;
+}
+.active0-header-text {
+  position: relative;
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 15rpx 20rpx 15rpx 30rpx;
+  font-size: 28rpx;
+  margin: 0 10rpx 0 30rpx;
+  min-height: 42rpx;
+}
+.active0-header-text::before {
+  content: "";
+  position: absolute;
+  top: 15rpx;
+  left: -18rpx;
+  height: 0;
+  width: 0;
+  border-style: solid;
+  border-width: 20rpx 20rpx 20rpx 0;
+  border-color: transparent #fff transparent transparent;
+}
+.active0-btn {
+  margin-top: 50rpx;
+  font-weight: normal;
+  color: #FFF;
+  font-size: 30rpx;
+  border-radius: 20px;
+  background-color: #1989fa;
+}
+
+
+
+.active1 {
+  display: flex;
+  flex-direction: column;
+}
+.active1-text {
+  font-size: 30rpx;
+}
+.active1-desBox {
+  background-color: #1989fa;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding-top: 10rpx;
+}
+.active1-desBox-input {
+  background-color: #FFF;
+  width: 90%;
+  border-radius: 5rpx;
+  margin: 2.5%;
+  padding: 10rpx 20rpx;
+}
+.active1-datePicker {
+  margin: 10rpx 2.5% 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.active1-session {
+  margin: 10rpx 2.5% 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.active1-peopleNum {
+  margin: 10rpx 2.5% 0;
+  display: flex;
+  flex-direction: column;
+}
+.active1-btn {
+  margin-top: 10rpx;
+  font-weight: normal;
+  color: #000;
+  font-size: 30rpx;
+  border-radius: 20px;
+  border: 1rpx solid #1989fa;
+  background-color: #fff;
+}
+
+.active2 {
+  display: flex;
+  flex-direction: column;
+}
+.active2-myGame {
+  margin: 30rpx;
+}
+.active2-text {
+  font-size: 30rpx;
+}
+.active2-btn {
+  font-size: 30rpx;
+  width: 94%;
+  background-color: #fff;
+  font-weight: normal;
+  border-radius: 5rpx;
+  margin: 10rpx 0 0;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.active2-tarn {
+  color: #999;
+}
+
+van-tabbar {
+  height: 8vh;
+}

@@ -1,0 +1,84 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- 最近约球View -->
+  <view wx:if="{{ active == 0 }}" class="active0">
+    <view wx:if="{{ !haveHistory }}" class="active0-header">
+      <image style="width: 60rpx; height: 60rpx;" mode="aspectFit" src="/assets/img/soccer_icon.png"></image>
+      <text class="active0-header-text">{{active0HeaderText}}</text>
+    </view>
+    <button wx:if="{{ !haveHistory }}" class="active0-btn">发起比赛</button>
+    <view wx:if="{{ haveHistory }}">
+      <deatail-box wx:for="{{ historyArr }}" paramsForm="{{ item }}" wx:key="index"></deatail-box>
+    </view>
+  </view>
+  <!-- 发起约球View -->
+  <view wx:if="{{ active == 1 }}" class="active1">
+    <view class="active1-desBox">
+      <text style="font-size: 32rpx; color: #FFF; margin-right: 2.5%;">YongXiangSports</text>
+      <text style="font-size: 28rpx; color: #FFF; margin-right: 2.5%;">永祥运动</text>
+      <input class="active1-desBox-input" placeholder="比赛说明" />
+    </view>
+    <view class="active1-datePicker">
+      <view class="active1-text">比赛日期</view>
+      <picker mode="date" value="{{ active1Form.date }}" start="{{ stratDate }}" end="{{ endDate }}" bindchange="onChangeDate">
+        <view class="picker">
+         {{ active1Form.date }} >
+        </view>
+      </picker>
+    </view>
+    <view class="active1-session">
+      <text class="active1-text">地址</text>
+      <input class="active1-address-input" placeholder="请输入地址" bindinput="onInputAddress"/>
+    </view>
+    <view class="active1-session">
+      <text class="active1-text">球类</text>
+      <input class="active1-type-input" placeholder="请输入球类" />
+    </view>
+    <view class="active1-session">
+      <text class="active1-text">分数</text>
+      <input class="active1-score-input" placeholder="请输入分数" />
+    </view>
+    <view class="active1-session">
+      <text class="active1-text">费用</text>
+      <input class="active1-pay-input" placeholder="请输入费用" />
+    </view>
+    <view class="active1-peopleNum">
+      <text class="active1-text">报名人数</text>
+      <view class="active1-peopleNum-slider">
+        <slider bindchange="onChangeSlider" show-value max="20"/>
+      </view>
+    </view>
+    <button class="active0-btn">发起比赛</button>
+    <button class="active1-btn">推荐队长使用小程序</button>
+  </view>
+  <!-- 我的View -->
+  <view wx:if="{{ active == 2 }}" class="active2"> 
+    <view class="userinfo">
+      <button class="userinfo-btn" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 点击获取头像昵称 </button>
+      <block wx:else>
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </block>
+    </view>
+    <view class="active2-myGame">
+      <view style="display: flex; flex-direction: row; align-items: center;">
+        <image style="height: 40rpx; width:40rpx; margin-right: 10rpx" mode="aspectFit" src="/assets/img/soccer_icon.png" />
+        <text class="active2-text">我的比赛</text>
+      </view>
+      <view class="active2-btn" bind:tap="onClickJoined">      
+        <text class="active2-text">我参与的</text>
+        <text class="active2-tarn">></text>
+      </view>
+      <view class="active2-btn" bind:tap="onClickCreated">      
+        <text class="active2-text">我发起的</text>
+        <text class="active2-tarn">></text>
+      </view>
+    </view>
+  </view>
+  <!-- tabbar -->
+  <van-tabbar active="{{ active }}" bind:change="onChangeTab">
+    <van-tabbar-item icon="home-o">最近约球</van-tabbar-item>
+    <van-tabbar-item icon="search">发起约球</van-tabbar-item>
+    <van-tabbar-item icon="manager">我的</van-tabbar-item>
+  </van-tabbar>
+</view>

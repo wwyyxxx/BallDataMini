@@ -1,0 +1,9 @@
+/**app.wxss**/
+.container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: #f6f6f6;
+  overflow: scroll;
+} 
