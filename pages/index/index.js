@@ -1,5 +1,6 @@
 //index.js
 const util = require('../../utils/util.js')
+import http from "../../utils/httpUtil"
 //获取应用实例
 const app = getApp()
 
@@ -101,6 +102,7 @@ Page({
         userInfo: app.globalData.userInfo,
         hasUserInfo: true
       })
+      this.loginAndGetOpenid(app.globalData.userInfo);
     } else if (this.data.canIUse){
       // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
       // 所以此处加入 callback 以防止这种情况
@@ -109,6 +111,7 @@ Page({
           userInfo: res.userInfo,
           hasUserInfo: true
         })
+        this.loginAndGetOpenid(res.userInfo);
       }
     } else {
       // 在没有 open-type=getUserInfo 版本的兼容处理
@@ -121,6 +124,7 @@ Page({
           })
         }
       })
+      this.loginAndGetOpenid(res.userInfo);
     }
   },
   getUserInfo: function(e) {
@@ -130,5 +134,28 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+    this.loginAndGetOpenid(e.detail.userInfo);
+  },
+  loginAndGetOpenid:function(data){
+    console.log('do login and get openid',data);
+    let that = this;
+    wx.login({
+      success: function (res) {
+        if (res.code) {
+          var params = {
+            code: res.code,
+            nickName: data.nickName,
+            avatar: data.avatarUrl,
+            sex: data.gender
+          }
+          http.postReq("/wx/user/add",params,that.saveOpenId)
+        }
+      }
+    })
+  },
+  saveOpenId: function(data) {
+    console.log("saveOpenId",data)
+    app.globalData.userInfo = data.data
+    wx.setStorageSync('openId', data.data.openid);
+  },
 })

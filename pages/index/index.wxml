@@ -54,7 +54,7 @@
   <!-- 我的View -->
   <view wx:if="{{ active == 2 }}" class="active2"> 
     <view class="userinfo">
-      <button class="userinfo-btn" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 点击获取头像昵称 </button>
+      <button class="userinfo-btn" wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 点击登录 </button>
       <block wx:else>
         <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
         <text class="userinfo-nickname">{{userInfo.nickName}}</text>
