@@ -33,28 +33,13 @@ Page({
         scope: "测试分数1",
         needpay: 1111,
         alredyDone: false  // 报名中为false, 已结束为true
-      },
-      {
-        des: "比赛说明2",
-        date: util.formatStartTime(new Date()),
-        address: "测试地址2",
-        number: 3,
-        type: "测试球类2",
-        scope: "测试分数2",
-        needpay: 222,
-        alredyDone: false  // 报名中为false, 已结束为true
-      },
-      {
-        des: "比赛说明3",
-        date: util.formatStartTime(new Date()),
-        address: "测试地址3",
-        number: 19,
-        type: "测试球类3",
-        scope: "测试分数3",
-        needpay: 33,
-        alredyDone: false  // 报名中为false, 已结束为true
       }
-    ]
+    ],
+    typeIndex:0,
+    ballType:["羽毛球","篮球","足球"],
+    game:{
+      cost:0.00
+    }
   },
   //事件处理函数
   bindViewTap: function() {
@@ -64,7 +49,44 @@ Page({
   },
   onChangeTab(event) {
     // event.detail 的值为当前选中项的索引
+    if(event.detail == 0){
+      this.getGameList()
+    }
+    if(event.detail == 1) {
+      this.getBallType()
+    }
     this.setData({ active: event.detail });
+  },
+  toDetailBox:function(event) {
+    console.log("toDetailBox",event)
+    wx.navigateTo({
+      url: '../detail/detail?item='+JSON.stringify(event.detail)
+    })
+  },
+  getGameList:function(){
+    http.postReq('/wx/game/list',null,this.updateGameList)
+  },
+  getBallType:function(){
+    http.postReq('/wx/type/list',null,this.updateTypeList)
+  },
+  updateGameList:function(e) {
+    console.log("updateGameList",e)
+    this.setData({
+      historyArr:e.rows
+    })
+  },
+  updateTypeList:function(e) {
+    console.log("updateTypeList",e)
+    let temp = []
+    e.rows.forEach(obj => {
+      console.log("forEach",obj)
+      temp.push(obj.name)
+    });
+    if(temp) {
+      this.setData({
+        ballType:temp
+      })
+    }
   },
   onChangeDate(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -96,6 +118,18 @@ Page({
       [address]: e.detail.value
     })
   },
+  bindPickerChange: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      typeIndex: e.detail.value
+    })
+  },
+  submitGame:function(e){
+    console.log('form发生了submit事件，携带数据为：', e.detail.value)
+    let data = e.detail.value
+    data.type = this.data.ballType[this.data.typeIndex].name
+    http.postReq('/wx/game/add',data,null)
+  },
   onLoad: function () {
     if (app.globalData.userInfo) {
       this.setData({
@@ -126,6 +160,7 @@ Page({
       })
       this.loginAndGetOpenid(res.userInfo);
     }
+    this.getGameList()
   },
   getUserInfo: function(e) {
     console.log(e)

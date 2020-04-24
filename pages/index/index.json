@@ -3,6 +3,8 @@
     "van-tabbar": "/miniprogram_npm/vant-weapp/tabbar/index",
     "van-tabbar-item": "/miniprogram_npm/vant-weapp/tabbar-item/index",
     "van-icon": "/miniprogram_npm/vant-weapp/icon/index",
-    "deatail-box": "/components/detailBox/index"
+    "deatail-box": "/components/detailBox/index",
+    "van-radio": "/miniprogram_npm/vant-weapp/radio/index",
+    "van-radio-group": "/miniprogram_npm/vant-weapp/radio-group/index"
   }
 }

@@ -7,9 +7,10 @@ Component({
     paramsForm: {
       type: Object,
       value: {
-        des: "默认",
-        date: util.formatStartTime(new Date()),
+        title: "默认",
+        playDate: util.formatStartTime(new Date()),
         address: "默认",
+        peopleNumner: 0,
         number: 0,
         type: "默认",
         scope: "默认",
@@ -32,6 +33,15 @@ Component({
       this.setData({
         condition: false
       })
+    },
+    onTapChild: function(event){
+      console.log("onTapChild",event)
+      // detail对象，提供给事件监听函数
+      let item = event.currentTarget.dataset.item
+      // 触发事件的选项
+      var myEventOption = {} 
+      // 使用 triggerEvent 方法触发自定义组件事件，指定事件名、detail对象和事件选项
+      this.triggerEvent('parentEvent', item, myEventOption)
     }
   }
 })

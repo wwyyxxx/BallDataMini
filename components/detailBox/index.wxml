@@ -1,13 +1,17 @@
-<view class="detailBox">
+<view class="detailBox" bind:tap="onTapChild" data-item='{{paramsForm}}'>
   <view wx:if="{{ !paramsForm.alredyDone }}" class="status-continue">报名中</view>
   <view wx:if="{{ paramsForm.alredyDone }}" class="status-pass">已结束</view>
   <view class="detailBox-des">
     <image style="width: 60rpx; height: 60rpx;" mode="aspectFit" src="/assets/img/soccer_icon.png"></image>
-    <text class="detailBox-des-text">{{ paramsForm.des }}</text>
+    <text class="detailBox-des-text">{{ paramsForm.title }}</text>
+  </view>
+  <view class="detailBox-date detailBox-session">
+    <van-icon name="flag-o" color="#1989fa"/>
+    <text class="detailBox-date-text">{{ paramsForm.type }}</text>
   </view>
   <view class="detailBox-date detailBox-session">
     <van-icon name="underway-o" color="#1989fa"/>
-    <text class="detailBox-date-text">{{ paramsForm.date }}</text>
+    <text class="detailBox-date-text">{{ paramsForm.playDate }}</text>
   </view>
   <view class="detailBox-address detailBox-session">
     <van-icon name="location-o" color="#1989fa"/>
@@ -17,15 +21,15 @@
     <van-icon name="friends-o" color="#1989fa"/>
     <view class="detailBox-moreInfo-item">
       <text>比赛人数</text>
-      <text class="pri-text">{{ paramsForm.number }}</text>
+      <text class="pri-text"> {{ paramsForm.peopleNumner }}</text>
     </view>
     <view class="detailBox-moreInfo-item">
       <text>报名人数</text>
-      <text class="pri-text">{{ paramsForm.number }}</text>
+      <text class="pri-text"> {{ paramsForm.count ?paramsForm.number:0 }}</text>
     </view>
     <view class="detailBox-moreInfo-item">
       <text>剩余名额</text>
-      <text class="pri-text">{{ paramsForm.number }}</text>
+      <text class="pri-text"> {{ paramsForm.peopleNumner -  paramsForm.count }}</text>
     </view>
   </view>
 </view>

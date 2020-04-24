@@ -7,45 +7,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-    historyArr: [
-      {
-        des: "比赛说明1",
-        date: util.formatStartTime(new Date()),
-        address: "测试地址1",
-        number: 10,
-        type: "测试球类1",
-        scope: "测试分数1",
-        needpay: 1111,
-        alredyDone: false  // 报名中为false, 已结束为true
-      },
-      {
-        des: "比赛说明2",
-        date: util.formatStartTime(new Date()),
-        address: "测试地址2",
-        number: 3,
-        type: "测试球类2",
-        scope: "测试分数2",
-        needpay: 222,
-        alredyDone: false  // 报名中为false, 已结束为true
-      },
-      {
-        des: "比赛说明3",
-        date: util.formatStartTime(new Date()),
-        address: "测试地址3",
-        number: 19,
-        type: "测试球类3",
-        scope: "测试分数3",
-        needpay: 33,
-        alredyDone: false  // 报名中为false, 已结束为true
-      }
-    ]
+    game: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log("onLoad",JSON.parse(options.item))
+    this.setData({
+      game:JSON.parse(options.item)
+    })
   },
 
   /**

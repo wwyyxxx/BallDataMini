@@ -1,2 +1,12 @@
-<!--pages/detail/detail.wxml-->
-<text>pages/detail/detail.wxml</text>
+<view>
+  <deatail-box paramsForm="{{ game }}" ></deatail-box>
+  <van-row >
+    <van-col offset="1" span="11"> 
+      <van-button round plain size="small" type="info">报名</van-button> 
+    </van-col>
+    <van-col span="11"> 
+      <van-button round  size="small" type="info">分享</van-button> 
+    </van-col>
+  </van-row>
+
+</view>
