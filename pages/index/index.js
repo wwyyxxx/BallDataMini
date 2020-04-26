@@ -9,7 +9,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    haveHistory: true,
+    haveHistory: false,
     active: 0,
     active0HeaderText: "您最近没有报名比赛，是否要发起一场比赛",
     active1Form: {
@@ -47,8 +47,14 @@ Page({
       url: '../logs/logs'
     })
   },
+  startPlayGame:function(){
+    let data = { detail:0 }
+    data.detail  = 1
+    this.onChangeTab(data)
+  },
   onChangeTab(event) {
     // event.detail 的值为当前选中项的索引
+    console.log("onChangeTab", event)
     if(event.detail == 0){
       this.getGameList()
     }
@@ -72,7 +78,8 @@ Page({
   updateGameList:function(e) {
     console.log("updateGameList",e)
     this.setData({
-      historyArr:e.rows
+      historyArr:e.rows,
+      haveHistory:true
     })
   },
   updateTypeList:function(e) {
@@ -82,9 +89,10 @@ Page({
       console.log("forEach",obj)
       temp.push(obj.name)
     });
-    if(temp) {
+    if(temp && temp.length>0) {
       this.setData({
-        ballType:temp
+        ballType:temp,
+        haveHistory : true
       })
     }
   },
@@ -127,8 +135,17 @@ Page({
   submitGame:function(e){
     console.log('form发生了submit事件，携带数据为：', e.detail.value)
     let data = e.detail.value
-    data.type = this.data.ballType[this.data.typeIndex].name
-    http.postReq('/wx/game/add',data,null)
+    data.type = this.data.ballType[this.data.typeIndex]
+    let detail = {}
+    detail.detail = 0
+    http.postReq('/wx/game/add', data, this.submit())
+  },
+  submit:function(){
+    wx.showModal({
+      // title: '',
+      content: '提交成功',
+      showCancel: false
+    })
   },
   onLoad: function () {
     if (app.globalData.userInfo) {

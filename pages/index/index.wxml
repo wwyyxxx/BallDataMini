@@ -6,7 +6,7 @@
       <image style="width: 60rpx; height: 60rpx;" mode="aspectFit" src="/assets/img/soccer_icon.png"></image>
       <text class="active0-header-text">{{active0HeaderText}}</text>
     </view>
-    <button wx:if="{{ !haveHistory }}" class="active0-btn">发起比赛</button>
+    <button wx:if="{{ !haveHistory}}" class="active0-btn" bindtap="startPlayGame">发起比赛</button>
     <view wx:if="{{ haveHistory }}">
       <deatail-box bind:parentEvent="toDetailBox" wx:for="{{ historyArr }}" paramsForm="{{ item }}" wx:key="index"></deatail-box>
     </view>
@@ -84,13 +84,13 @@
         <text class="active2-text">我的比赛</text>
       </view>
       <view class="active2-btn" bind:tap="onClickJoined">      
-        <text class="active2-text">我参与的</text>
+        <text class="active2-text">我的比赛</text>
         <text class="active2-tarn">></text>
       </view>
-      <view class="active2-btn" bind:tap="onClickCreated">      
+      <!-- <view class="active2-btn" bind:tap="onClickCreated">      
         <text class="active2-text">我发起的</text>
         <text class="active2-tarn">></text>
-      </view>
+      </view> -->
     </view>
   </view>
   <!-- tabbar -->

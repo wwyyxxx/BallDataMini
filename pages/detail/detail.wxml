@@ -1,12 +1,47 @@
 <view>
   <deatail-box paramsForm="{{ game }}" ></deatail-box>
-  <van-row >
-    <van-col offset="1" span="11"> 
-      <van-button round plain size="small" type="info">报名</van-button> 
+  <scroll-view class="scroll-view_H" scroll-x="true" bindscroll="scroll" style="width: 100%">
+    <view wx:for="{{userList}}">
+      <image style="width: 60px; height: 60px;" mode="aspectFit" src="{{item.avatar}}"></image>
+    <view>{{item.nickName}}</view>
+    </view>
+  </scroll-view>
+  <view >
+    <van-row type="flex" justify="space-around">
+      <van-col  offset="5" span="6">蓝方: {{game.scoreMine}}</van-col>
+      <van-col span="2">:</van-col>
+      <van-col span="6">红方: {{game.scoreOther}}</van-col>
+    </van-row>
+  </view>
+  <view >
+    <van-row type="flex" justify="space-around">
+      <van-col  offset="4" span="6">
+        蓝方：<van-stepper value="{{ game.scoreMine }}" min="0" integer bind:change="onBlueChange" />
+      </van-col>
+      <van-col span="2">:</van-col>
+      <van-col span="6">红方: <van-stepper value="{{ game.scoreOther }}" min="0" integer bind:change="onRedChange" /></van-col>
+    </van-row>
+  </view>
+  
+  <van-row gutter="20">
+    <van-col offset="5" span="6"> 
+      <van-button wx:if="{{!isJoin}}" round plain type="info" bind:tap="joinIn">报名</van-button> 
+      <van-button wx:else round plain type="info" disabled = "true">已报名</van-button> 
     </van-col>
-    <van-col span="11"> 
-      <van-button round  size="small" type="info">分享</van-button> 
+    <van-col offset="4" span="6"> 
+      <van-button round type="info">分享</van-button> 
     </van-col>
   </van-row>
 
+  <van-row gutter="30">
+    <van-col offset="6" span="12"> 
+      <van-button round plain size="large" type="info" bind:tap="uploadVideo">上传视频</van-button> 
+    </van-col>
+  </van-row>
+
+  <van-row gutter="30">
+    <van-col offset="6" span="12"> 
+      <van-button round plain size="large" type="info" bind:tap="deleteGame">删除比赛</van-button> 
+    </van-col>
+  </van-row>
 </view>

@@ -17,6 +17,10 @@
     <van-icon name="location-o" color="#1989fa"/>
     <text class="detailBox-date-text">{{ paramsForm.address }}</text>
   </view>
+  <view class="detailBox-address detailBox-session">
+    <van-icon name="balance-o" color="#1989fa"/>
+    <text class="detailBox-date-text">{{ paramsForm.cost }}</text>
+  </view>
   <view class="detailBox-moreInfo detailBox-session">
     <van-icon name="friends-o" color="#1989fa"/>
     <view class="detailBox-moreInfo-item">
@@ -25,7 +29,7 @@
     </view>
     <view class="detailBox-moreInfo-item">
       <text>报名人数</text>
-      <text class="pri-text"> {{ paramsForm.count ?paramsForm.number:0 }}</text>
+      <text class="pri-text"> {{ paramsForm.count ? paramsForm.count:0 }}</text>
     </view>
     <view class="detailBox-moreInfo-item">
       <text>剩余名额</text>
