@@ -6,7 +6,6 @@
     "van-row": "/miniprogram_npm/@vant/weapp/row/index",
     "van-col": "/miniprogram_npm/@vant/weapp/col/index",
     "van-button": "/miniprogram_npm/@vant/weapp/button/index",
-    "van-stepper": "/miniprogram_npm/@vant/weapp/stepper/index",
-    "van-uploader": "/miniprogram_npm/@vant/weapp/uploader/index"
+    "van-stepper": "/miniprogram_npm/@vant/weapp/stepper/index"
   }
 }

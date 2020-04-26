@@ -1,9 +1,10 @@
 {
   "pages": [
+    "pages/video/upload/upload",
     "pages/index/index",
     "pages/logs/logs",
     "pages/detail/detail",
-    "pages/video/upload/load",
+    
     "pages/video/detail/detail",
     "pages/video/list/list"
   ],

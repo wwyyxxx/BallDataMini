@@ -98,8 +98,10 @@ Page({
     }
     http.postReq('/wx/game/edit',data,null)
   },
-  uploadVideo:function(){
-    
+  toUploadVideo:function(){
+    wx.navigateTo({
+      url: '../video/upload/upload?game='+JSON.stringify(this.data.game)
+    })
   },
   /**
    * 生命周期函数--监听页面显示
