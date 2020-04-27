@@ -13,7 +13,8 @@ Page({
     isJoin:false,
     blueScore:0,
     redScore:0,
-    isUpload:false
+    isUpload:false,
+    userId:null
   },
 
   /**
@@ -33,7 +34,8 @@ Page({
     this.setData({
       game:data,
       userList :templist,
-      isJoin: tempJoin
+      isJoin: tempJoin,
+      userId:app.globalData.userInfo.id
     })
   },
   joinIn:function(){

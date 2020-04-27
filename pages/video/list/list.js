@@ -17,7 +17,10 @@ Page({
     this.getVideoList()
   },
   getVideoList:function(){
-    http.postReq('/wx/video/list',null,this.updateList)
+    let data = {
+      status:1
+    }
+    http.postReq('/wx/video/list',data,this.updateList)
   },
   updateList:function(res) {
     console.log("updateList",res)
