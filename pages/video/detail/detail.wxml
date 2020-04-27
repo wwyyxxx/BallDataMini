@@ -1,2 +1,4 @@
-<!--pages/video/detail/detail.wxml-->
-<text>pages/video/detail/detail.wxml</text>
+<view >
+    <video style="width:100%" id="myVideo" src="{{video.url}}" controls></video>
+    <van-cell title="{{video.title}}" value="{{video.type}}" size="large" label="{{video.summary}}" />
+</view>

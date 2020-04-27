@@ -1,2 +1,8 @@
 <!--pages/video/list/list.wxml-->
-<text>pages/video/list/list.wxml</text>
+<view >
+    <van-cell-group>
+        <view wx:for="{{videoList}}">
+            <van-cell title="{{item.title}}" value="{{item.type}}" border="{{ true }}" is-link bind:tap="toDetatile" data-item="{{item}}"/>
+        </view>
+    </van-cell-group>
+</view>

@@ -1,20 +1,36 @@
 // pages/video/list/list.js
+const app = getApp()
+import http from "../../../utils/httpUtil"
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    videoList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getVideoList()
   },
-
+  getVideoList:function(){
+    http.postReq('/wx/video/list',null,this.updateList)
+  },
+  updateList:function(res) {
+    console.log("updateList",res)
+    this.setData({
+      videoList:res.rows
+    })
+  },
+  toDetatile:function(res){
+    console.log("toDetatile",res)
+    wx.navigateTo({
+      url: '../detail/detail?video='+JSON.stringify(res.currentTarget.dataset.item)
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

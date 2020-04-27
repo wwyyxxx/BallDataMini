@@ -87,10 +87,14 @@
         <text class="active2-text">我的比赛</text>
         <text class="active2-tarn">></text>
       </view>
-      <!-- <view class="active2-btn" bind:tap="onClickCreated">      
-        <text class="active2-text">我发起的</text>
+      <view class="active2-btn" bind:tap="onVideoList">      
+        <text class="active2-text">观看视频</text>
         <text class="active2-tarn">></text>
-      </view> -->
+      </view>
+      <view class="active2-btn" bind:tap="onFeedBack">      
+        <text class="active2-text">建议反馈</text>
+        <text class="active2-tarn">></text>
+      </view>
     </view>
   </view>
   <!-- tabbar -->

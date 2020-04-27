@@ -1,18 +1,23 @@
 // pages/video/detail/detail.js
+const app = getApp()
+import http from "../../../utils/httpUtil"
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    video:null
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log("onLoad",JSON.parse(options.video))
+    this.setData({
+      video:JSON.parse(options.video)
+    })
   },
 
   /**

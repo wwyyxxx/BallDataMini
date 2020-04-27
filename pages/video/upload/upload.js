@@ -10,7 +10,8 @@ Page({
     game:null,
     fileList: [],
     title:"",
-    summary:""
+    summary:"",
+    isNull:false
   },
 
   afterRead(event) {
@@ -38,6 +39,12 @@ Page({
    */
   onLoad: function (options) {
     console.log("onLoad",options)
+    if(options) {
+      let data = JSON.parse(options.game)
+      this.setData({
+        game:data
+      })
+    }
   },
   onTitleChange(event) {
     // event.detail 为当前输入的值
@@ -51,6 +58,12 @@ Page({
   },
   upload:function(){
     let that = this
+    if(!that.data.title) {
+      that.setData({
+        isNull:true
+      })
+      return
+    }
     wx.uploadFile({
       url: 'http://127.0.0.1/common/upload', // 仅为示例，非真实的接口地址
       filePath: this.data.fileList[0].name,
@@ -69,13 +82,22 @@ Page({
   },
   addVideo:function(res) {
     let data = {
-      uId:2,
+      uId:app.globalData.userInfo.id,
       title:this.data.title,
       summary:this.data.summary,
-      type:"羽毛球",
+      type:this.data.game.type,
       url:res.fileName
     }
-    http.postReq('/wx/video/add',data,null)
+    http.postReq('/wx/video/add',data,this.back)
+  },
+  back:function(){
+    var pages = getCurrentPages(); //当前页面
+    var beforePage = pages[pages.length - 2]; //前一页
+    wx.navigateBack({
+      success: function () {
+        beforePage.updataUploadStatus();
+      }
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

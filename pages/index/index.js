@@ -111,13 +111,19 @@ Page({
     })
   },
   onClickJoined(e) {
-    console.log(e)
     wx.navigateTo({
       url: 'detail'
     })
   },
-  onClickCreated(e) {
-    console.log(e)
+  onVideoList(e) {
+    wx.navigateTo({
+      url: '../video/list/list'
+    })
+  },
+  onFeedBack(e) {
+    wx.navigateTo({
+      url: '../feedback/feedback'
+    })
   },
   onInputAddress(e) {
     console.log(e.detail.value)

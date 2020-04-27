@@ -12,7 +12,8 @@ Page({
     userList:[],
     isJoin:false,
     blueScore:0,
-    redScore:0
+    redScore:0,
+    isUpload:false
   },
 
   /**
@@ -63,6 +64,11 @@ Page({
         beforePage.getGameList(); // 执行前一个页面的onLoad方法
       }
     });
+  },
+  updataUploadStatus:function(){
+    this.setData({
+      isUpload:true
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

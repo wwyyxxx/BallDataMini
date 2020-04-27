@@ -1,5 +1,6 @@
 <view >
     <view >
+        <!-- error = "{{ isNull }}" -->
         <form >
             <van-cell-group>
             <van-field
@@ -9,6 +10,8 @@
                 border="{{ true }}"
                 bind:change="onTitleChange"
                 name="title"
+                
+                required
             />
             <van-field
                 value="{{ summary }}"
@@ -21,7 +24,7 @@
                 bind:change="onSummaryChange"
             />
             <van-field
-                value="羽毛球"
+                value="{{game.type}}"
                 label="球类"
                 border="{{ true }}"
                 name="type"

@@ -1,0 +1,35 @@
+<view class="container">
+        <van-field
+                value="{{ content }}"
+                placeholder="请输入反馈建议"
+                label="反馈建议"
+                type="textarea"
+                bind:change="onfeedBackChange"
+                name="content"
+                autosize="{maxHeight: 600, minHeight: 200}"
+                required
+                fixed="true"
+        />
+        <van-field
+            value="{{ contact }}"
+            label="联系方式"
+            placeholder="请输入联系方式"
+            border="{{ true }}"
+            name="contact"
+            bind:change="onContactChange"
+        />
+        <view class="section">
+            <picker mode="selector" value="{{roleIndex}}" range="{{role}}" bindchange="bindRoleChange">
+                <view class="picker">
+                您的身份: {{role[roleIndex]}}
+                </view>
+            </picker>
+        </view>
+
+        <van-row gutter="10">
+                <van-col offset="6" span="12"> 
+                    <van-button round plain size="large" type="info" bind:tap="addFeedBack">提交</van-button> 
+                </van-col>
+        </van-row>
+
+</view>
