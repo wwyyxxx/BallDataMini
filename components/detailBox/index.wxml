@@ -1,6 +1,6 @@
 <view class="detailBox" bind:tap="onTapChild" data-item='{{paramsForm}}'>
-  <view wx:if="{{ !paramsForm.alredyDone }}" class="status-continue">报名中</view>
-  <view wx:if="{{ paramsForm.alredyDone }}" class="status-pass">已结束</view>
+  <view wx:if="{{ paramsForm.status === 0 }}" class="status-continue">报名中</view>
+  <view wx:if="{{ paramsForm.status === 1 }}" class="status-pass">已结束</view>
   <view class="detailBox-des">
     <image style="width: 60rpx; height: 60rpx;" mode="aspectFit" src="/assets/img/soccer_icon.png"></image>
     <text class="detailBox-des-text">{{ paramsForm.title }}</text>

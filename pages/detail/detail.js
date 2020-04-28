@@ -14,7 +14,9 @@ Page({
     blueScore:0,
     redScore:0,
     isUpload:false,
-    userId:null
+    userId:null,
+    hasUpload:false,
+    userGameId:null
   },
 
   /**
@@ -25,20 +27,27 @@ Page({
     let data = JSON.parse(options.item)
     let templist = []
     let tempJoin = false;
+    let tempUpload = false;
     data.userGameList.forEach(user => {
       templist.push(user.wxUsers[0])
       if(user.wxUsers[0].id == app.globalData.userInfo.id) {
         tempJoin = true
+        this.data.userGameId = user.id
+        if(user.status === 1) {
+          tempUpload = true
+        }
       }
     });
     this.setData({
       game:data,
       userList :templist,
       isJoin: tempJoin,
-      userId:app.globalData.userInfo.id
+      userId:app.globalData.userInfo.id,
+      hasUpload:tempUpload
     })
   },
   joinIn:function(){
+    if(this.data.game.status===1) return
     let data ={
       gId: this.data.game.id,
       uId: app.globalData.userInfo.id
@@ -108,7 +117,7 @@ Page({
   },
   toUploadVideo:function(){
     wx.navigateTo({
-      url: '../video/upload/upload?game='+JSON.stringify(this.data.game)
+      url: '../video/upload/upload?game='+JSON.stringify(this.data.game)+'&id='+this.data.userGameId
     })
   },
   /**

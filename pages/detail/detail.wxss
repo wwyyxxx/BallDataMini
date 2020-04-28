@@ -1,1 +1,14 @@
 /* pages/detail/detail.wxss */
+.f-row {
+    display: flex;
+    flex-direction: row;
+}
+.f-space-around {
+    display: flex;
+    justify-content: space-around;
+}
+.f-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

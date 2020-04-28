@@ -75,6 +75,9 @@
 .active1-text {
   font-size: 30rpx;
 }
+.active1-address-input {
+  text-align: right;
+}
 .active1-desBox {
   background-color: #1989fa;
   display: flex;
@@ -94,6 +97,9 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+.active1-pay-input {
+  text-align: right;
 }
 .active1-session {
   margin: 10rpx 2.5% 0;

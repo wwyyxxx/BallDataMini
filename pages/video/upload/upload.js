@@ -11,7 +11,8 @@ Page({
     fileList: [],
     title:"",
     summary:"",
-    isNull:false
+    isNull:false,
+    userGameId:null
   },
 
   afterRead(event) {
@@ -41,6 +42,7 @@ Page({
     console.log("onLoad",options)
     if(options) {
       let data = JSON.parse(options.game)
+      this.data.userGameId = options.id
       this.setData({
         game:data
       })
@@ -88,8 +90,19 @@ Page({
       type:this.data.game.type,
       url:res.fileName
     }
-    http.postReq('/wx/video/add',data,this.back)
+    http.postReq('/wx/video/add',data,this.updateUserGameVideo)
   },
+  // updateUserGameVideo:function(){
+    
+  //   let data = {
+  //     uId:app.globalData.userInfo.id,
+  //     title:this.data.title,
+  //     summary:this.data.summary,
+  //     type:this.data.game.type,
+  //     url:res.fileName
+  //   }
+  //   http.postReq('/wx/video/add',data,this.updateUserGameVideo)
+  // },
   back:function(){
     var pages = getCurrentPages(); //当前页面
     var beforePage = pages[pages.length - 2]; //前一页
