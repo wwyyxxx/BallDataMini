@@ -113,6 +113,9 @@ Page({
       userList : temp,
       isJoin:1
     })
+    if(res.count == this.data.game.peopleNumner) {
+      http.postReq('/wx/game/edit',{id:this.data.game.id,status:1},null)
+    }
   },
 
   deleteGame:function(){
