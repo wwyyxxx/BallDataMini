@@ -174,7 +174,7 @@ Page({
       // 在没有 open-type=getUserInfo 版本的兼容处理
       wx.getUserInfo({
         success: res => {
-          app.globalData.userInfo = res.userInfo
+          this.setUserInfoAndSave(res.userInfo)
           this.setData({
             userInfo: res.userInfo,
             hasUserInfo: true
@@ -187,7 +187,7 @@ Page({
   },
   getUserInfo: function(e) {
     console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
+    this.setUserInfoAndSave(e.detail.userInfo)
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
@@ -206,14 +206,17 @@ Page({
             avatar: data.avatarUrl,
             sex: data.gender
           }
-          http.postReq("/wx/user/add",params,that.saveOpenId)
+          http.postReq("/wx/user/add",params,that.saveUserInfo)
         }
       }
     })
   },
-  saveOpenId: function(data) {
-    console.log("saveOpenId",data)
-    app.globalData.userInfo = data.data
-    wx.setStorageSync('openId', data.data.openid);
+  saveUserInfo: function(data) {
+    console.log("saveUserInfo",data)
+    this.setUserInfoAndSave(data.data)
   },
+  setUserInfoAndSave:function(data) {
+    app.globalData.userInfo = data
+    wx.setStorageSync('userInfo', data);
+  }
 })

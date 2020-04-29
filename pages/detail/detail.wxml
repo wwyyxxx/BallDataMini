@@ -27,16 +27,17 @@
   <view>
     <view class="f-row f-space-around">
       <block>
-        <van-button wx:if="{{!isJoin}}" round plain type="info" bind:tap="joinIn" disabled="{{game.status===1}}">报名</van-button> 
-        <van-button wx:else round plain type="info" disabled = "true">已报名</van-button> 
+        <van-button wx:if="{{isJoin == 0}}" round plain type="info" bind:tap="joinIn" disabled="{{game.status===1}}">报名</van-button> 
+        <van-button wx:if="{{isJoin == 1}}"  round plain type="info" disabled = "true">已报名</van-button> 
+        <van-button wx:if="{{isJoin == 2}}" round plain type="info" disabled = "true">停止报名</van-button> 
       </block>
       <block>
-        <van-button round type="info">分享</van-button> 
+        <van-button round type="info" open-type="share">分享</van-button> 
       </block>
     </view>
   </view>
 
-  <van-row gutter="30">
+  <van-row gutter="30" wx:if="{{isJoin == 1}}">
     <van-col offset="6" span="12" wx:if="{{hasUpload}}"> 
       <van-button round plain size="large" type="info" disabled>已上传</van-button> 
     </van-col>
