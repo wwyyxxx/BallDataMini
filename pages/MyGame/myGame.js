@@ -1,37 +1,34 @@
-// pages/video/list/list.js
+// pages/MyGame/myGame.js
 const app = getApp()
-import http from "../../../utils/httpUtil"
+import http from "../../utils/httpUtil"
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    videoList:[]
+    historyArr: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getVideoList()
+    this.getGameList()
   },
-  getVideoList:function(){
-    let data = {
-      status:1
-    }
-    http.postReq('/wx/video/listForWx',data,this.updateList)
+  getGameList:function(){
+    http.postReq('/wx/game/list',{uId:app.globalData.userInfo.id},this.updateGameList)
   },
-  updateList:function(res) {
-    console.log("updateList",res)
+  updateGameList:function(e) {
+    console.log("updateGameList",e)
     this.setData({
-      videoList:res.rows
+      historyArr:e.rows
     })
   },
-  toDetatile:function(res){
-    console.log("toDetatile",res)
+  toDetailBox:function(event) {
+    console.log("toDetailBox",event)
     wx.navigateTo({
-      url: '../detail/detail?video='+JSON.stringify(res.currentTarget.dataset.item)
+      url: '../detail/detail?item='+JSON.stringify(event.detail)
     })
   },
   /**

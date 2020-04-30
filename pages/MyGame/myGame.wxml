@@ -1,0 +1,7 @@
+<view >
+    <view class="active0">
+        <view>
+            <deatail-box bind:parentEvent="toDetailBox" wx:for="{{ historyArr }}" paramsForm="{{ item }}" wx:key="index"></deatail-box>
+        </view>
+    </view>
+</view>

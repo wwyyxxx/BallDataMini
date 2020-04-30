@@ -29,7 +29,9 @@
         </view>
         <view class="active1-session">
           <text class="active1-text">地址</text>
-          <input class="active1-address-input" placeholder="请输入地址" bindinput="onInputAddress" value = "{{game.address}}" name = "address"/>
+          <view bind:tap="openAddressPicker">
+            <input class="active1-address-input" placeholder="请选择地址" bindinput="onInputAddress" disabled value = "{{address}}" name = "address"/>
+          </view>
         </view>
         <view class="active1-session">
           <text class="active1-text">球类</text>
@@ -68,6 +70,9 @@
     </form>
     
     <!-- <button class="active1-btn">推荐队长使用小程序</button> -->
+    <view wx:if="{{showAddressPicker}}" class="active1-picker">
+      <van-picker show-toolbar title="标题"  columns="{{ columns }}" confirm-button-text="选择地址" cancel-button-text="确认" bind:cancel="onCancel" bind:confirm="onConfirm" bind:change="onChange" defaultIndex/>
+    </view>
   </view>
   <!-- 我的View -->
   <view wx:if="{{ active == 2 }}" class="active2"> 

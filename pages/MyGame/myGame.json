@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "deatail-box": "/components/detailBox/index"
+  }
+}

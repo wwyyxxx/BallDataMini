@@ -39,8 +39,52 @@ Page({
     ballType:["羽毛球","篮球","足球"],
     game:{
       cost:0.00
-    }
+    },
+    columns:['足球场','篮球场','羽毛球场'],
+    showAddressPicker:false,
+    address:null
   },
+  openAddressPicker:function(){
+    // this.setData({
+    //   showAddressPicker:true
+    // })
+    var that =this
+    wx.chooseLocation({
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          address:res.address
+          // showAddressPicker:false
+        })
+      }
+    })
+  },
+
+  onConfirm(event) {
+    console.log("onConfirm",event)
+    wx.chooseLocation({
+      success: function (res) {
+        console.log(res)
+        this.setData({
+          address:res.address,
+          showAddressPicker:false
+        })
+      }
+    })
+  },
+  onCancel(event) {
+    console.log("onCancel",res)
+    var value = event.detail.value;
+    this.setData({
+      address:value,
+      showAddressPicker:false
+    })
+  },
+  onChange(event) {
+    const { picker, value, index } = event.detail;
+    // this.setData
+  },
+
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({
@@ -61,7 +105,7 @@ Page({
     if(event.detail == 1) {
       this.getBallType()
     }
-    this.setData({ active: event.detail });
+    this.setData({ active: event.detail,showAddressPicker:false });
   },
   toDetailBox:function(event) {
     console.log("toDetailBox",event)
@@ -112,7 +156,7 @@ Page({
   },
   onClickJoined(e) {
     wx.navigateTo({
-      url: 'detail'
+      url: '../MyGame/myGame'
     })
   },
   onVideoList(e) {
